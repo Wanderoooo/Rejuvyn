@@ -1,6 +1,13 @@
+import SwitchPanel from "@/components/SwitchPanel";
+import Calendars from "@/components/Calendars";
+import ProgressBar from "@/components/ProgressBar";
 
 export default function Medication() {
   return (
-    <h1>medication here</h1>
+    <div>
+      <SwitchPanel />
+      <Calendars />
+      <ProgressBar />
+    </div>
   )
 }
