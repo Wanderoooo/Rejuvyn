@@ -1,0 +1,12 @@
+.welcome_title {
+  font-size: 2rem;
+}
+
+.welcome_p {
+  font-size: 1.5rem;
+}
+
+.container {
+  max-width: 35rem;
+  padding-left: 2rem;
+}

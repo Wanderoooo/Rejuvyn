@@ -5,6 +5,7 @@ import {auth} from '../context/AuthContext'
 import {  signOut } from "firebase/auth";
 import { useRouter } from 'next/router';
 import { useAuthContext } from '../context/AuthContext';
+import Link from 'next/link';
 
 
 export default function Navbar() { 
@@ -26,36 +27,36 @@ export default function Navbar() {
         <NavigationMenu.Root className={style.NavigationMenuRoot}>
           <NavigationMenu.List className={style.NavigationMenuList}>
           <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href='/'>
+              <Link className={style.NavigationMenuLink} href='/'>
               <Image
                   src="/images.png"
                   width={29}
                   height={29}
                   alt="Picture landing page icon"
                />
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
           <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href={user ? './dashboard' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './dashboard' : './signin'}>
                 Dashboard
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
           <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href={user ? './dailyhealth' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './dailyhealth' : './signin'}>
                 Daily Health Check
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
     
             <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href={user ? './medication' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './medication' : './signin'}>
                 Medication
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
 
             <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href={user ? './appointment' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './appointment' : './signin'}>
                 Appointment
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
           </NavigationMenu.List>
           <div className={style.ViewportPosition}>
@@ -64,9 +65,9 @@ export default function Navbar() {
 
           <NavigationMenu.List className={style.NavigationMenuList}>
           <NavigationMenu.Item>
-              <NavigationMenu.Link className={style.NavigationMenuLink} href={user ? './profile' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './profile' : './signin'}>
                 Profile
-              </NavigationMenu.Link>
+              </Link>
             </NavigationMenu.Item>
             <NavigationMenu.Item>
               {user ? 
@@ -74,7 +75,7 @@ export default function Navbar() {
                 Log Out
             </button>
             :
-            <button className={`${style.NavigationMenuLink} ${style.logout}`} onClick={() => router.push('./signin')}>
+            <button className={`${style.NavigationMenuLink} ${style.logout}`} onClick={() => router.push('./login')}>
                 Log In
             </button>
 }

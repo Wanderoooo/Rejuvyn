@@ -6,9 +6,9 @@ export default function SummaryTable() {
   <Table.Root className={style.table}>
   <Table.Header>
     <Table.Row>
-      <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>Group</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Doctor name</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Speciality</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Phone #</Table.ColumnHeaderCell>
     </Table.Row>
   </Table.Header>
 
