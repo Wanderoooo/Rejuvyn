@@ -36,15 +36,15 @@
   line-height: 1;
   border-radius: 4px;
   font-size: 15px;
-  color: var(--violet-11);
+  color: var(--dblue);
 }
 .NavigationMenuTrigger:focus,
 .NavigationMenuLink:focus {
-  box-shadow: 0 0 0 2px var(--violet-7);
+  box-shadow: 0 0 0 2px var(--skin);
 }
 .NavigationMenuTrigger:hover,
 .NavigationMenuLink:hover {
-  background-color: var(--violet-3);
+  background-color: var(--skin);
 }
 
 .NavigationMenuTrigger {

@@ -1,0 +1,19 @@
+.page {
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rejfont {
+  font-family: Bricolage Grotesque;
+  font-style: regular;
+  font-size: 10rem;
+}
+
+.rejc {
+  font-size: 1.2rem;
+}
+
+.buttons {
+  gap: 20px;
+}

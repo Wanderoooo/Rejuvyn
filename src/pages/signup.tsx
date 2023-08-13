@@ -2,9 +2,11 @@
 import React from "react";
 import signUp from "@/firebase/auth/signup";
 import { useRouter } from 'next/navigation'
-import style from '../styles/Home.module.css'
+import style from '../styles/sign.module.css'
 import { Tabs } from "@radix-ui/themes";
 import Link from "next/link";
+import { Flex } from "@radix-ui/themes";
+import styles from '../styles/index.module.css'
 
 export default function SignUp() {
 
@@ -26,6 +28,8 @@ export default function SignUp() {
   }
 
   return (
+    <Flex className={styles.page}>
+      <h1 className={styles.rejfont}>Rejuvyn</h1>
     <Tabs.Root className={style.TabsRoot} defaultValue="tab1">
       <Tabs.List className={style.TabsList} aria-label="Manage your account">
         <Tabs.Trigger className={style.TabsTrigger} value="tab1">
@@ -47,12 +51,13 @@ export default function SignUp() {
           </label>
           <input className={style.Input} id="setPassword" type="password" required onChange={(e) => setPassword(e.target.value)}/>
         </fieldset>
-        <div style={{ display: 'flex', marginTop: 20, justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-evenly' }}>
           <button className={`${style.Buttongreen} ${style.Button}`} type='submit'>Sign Up</button>
-          <p>Already have an account? <Link href="./signin">Sign Up</Link></p>
+          <p className={style.paragraph}>Already have an account? <Link href="./signin" className={style.Link}>Log In</Link></p>
         </div>
         </form>
       </Tabs.Content>
     </Tabs.Root>
+    </Flex>
   )
 }

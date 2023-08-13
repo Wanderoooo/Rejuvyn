@@ -1,10 +1,12 @@
 'use client'
-import style from '@/styles/Home.module.css'
+import style from '@/styles/sign.module.css'
 import React from "react";
 import signIn from "@/firebase/auth/signin"
 import { useRouter } from 'next/navigation'
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
+import { Flex } from '@radix-ui/themes';
+import styles from '../styles/index.module.css'
 
 function SignIn() {
 
@@ -27,10 +29,12 @@ function SignIn() {
     }
 
     return (
+      <Flex className={styles.page}>
+        <h1 className={styles.rejfont}>Rejuvyn</h1>
   <Tabs.Root className={style.TabsRoot} defaultValue="tab1">
     <Tabs.List className={style.TabsList} aria-label="Manage your account">
       <Tabs.Trigger className={style.TabsTrigger} value="tab1">
-        Sign In
+        Log In
       </Tabs.Trigger>
     </Tabs.List>
     <Tabs.Content className={style.TabsContent} value="tab1">
@@ -38,7 +42,7 @@ function SignIn() {
       <form onSubmit={handleForm}>
       <fieldset className={style.Fieldset}>
         <label className={style.Label} htmlFor="email">
-          email address
+          Email address
         </label>
         <input className={style.Input} id="email" type="email" required onChange={(e) => setEmail(e.target.value)}/>
       </fieldset>
@@ -48,13 +52,14 @@ function SignIn() {
         </label>
         <input className={style.Input} id="currentPassword" type="password" required onChange={(e) => setPassword(e.target.value)}/>
       </fieldset>
-      <div style={{ display: 'flex', marginTop: 20, justifyContent: 'flex-end' }}>
-        <button className={`${style.Buttongreen} ${style.Button}`}>Sign In</button>
-        <p>Don't have an account? <Link href="./signup">Sign up</Link></p>
+      <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-evenly' }}>
+        <button className={`${style.Buttongreen} ${style.Button}`}>Log In</button>
+        <p className={style.paragraph}>Don't have an account? <br></br><Link href="./signup" className={style.Link}>Sign up</Link></p>
       </div>
       </form>
     </Tabs.Content>
   </Tabs.Root>
+  </Flex>
     );
 }
 
