@@ -1,10 +1,10 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import style from './Navbar.module.css'
 import Image from 'next/image';
-import {auth} from '../context/AuthContext'
+import {auth} from '../firebase/context/AuthContext'
 import {  signOut } from "firebase/auth";
 import { useRouter } from 'next/router';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../firebase/context/AuthContext';
 import Link from 'next/link';
 
 
@@ -37,24 +37,24 @@ export default function Navbar() {
               </Link>
             </NavigationMenu.Item>
           <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './dashboard' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './dashboard' : './login'}>
                 Dashboard
               </Link>
             </NavigationMenu.Item>
           <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './dailyhealth' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './dailyhealth' : './login'}>
                 Daily Health Check
               </Link>
             </NavigationMenu.Item>
     
             <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './medication' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './medication' : './login'}>
                 Medication
               </Link>
             </NavigationMenu.Item>
 
             <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './appointment' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './appointment' : './login'}>
                 Appointment
               </Link>
             </NavigationMenu.Item>
@@ -65,7 +65,7 @@ export default function Navbar() {
 
           <NavigationMenu.List className={style.NavigationMenuList}>
           <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './profile' : './signin'}>
+              <Link className={style.NavigationMenuLink} href={user ? './profile' : './login'}>
                 Profile
               </Link>
             </NavigationMenu.Item>

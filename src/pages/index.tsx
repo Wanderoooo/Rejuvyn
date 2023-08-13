@@ -8,11 +8,16 @@ import sign from '../styles/sign.module.css'
 import { useRouter } from 'next/router'
 import DemoCarousel from '@/components/Carousel'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
   const router = useRouter()
+  const medicine = {
+    id: 1,
+    name: "synthroid-100mg",
+    instruction: "instruction",
+    next_dose: 24
+  }
 
   return (
     <Flex className={style.page}>

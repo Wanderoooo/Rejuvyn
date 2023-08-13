@@ -24,7 +24,7 @@ export default function SignUp() {
       }
 
       console.log(result)
-      return router.push("/dashboard")
+      return router.push("/profile")
   }
 
   return (

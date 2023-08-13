@@ -18,6 +18,9 @@
   gap: 20px
 }
 
-.dashboard {
-  /* width: 100% */
+.profile {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 }

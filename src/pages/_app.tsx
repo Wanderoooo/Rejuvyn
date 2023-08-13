@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import '@radix-ui/themes/styles.css';
 import type { AppProps } from 'next/app'
 import { Theme } from '@radix-ui/themes';
-import { AuthContextProvider } from '@/context/AuthContext'
+import { AuthContextProvider } from '@/firebase/context/AuthContext'
 import Head from 'next/head';
 
 export default function App({ Component, pageProps }: AppProps) {
