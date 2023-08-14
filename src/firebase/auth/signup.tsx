@@ -11,8 +11,6 @@ export default async function signUp(email: string, password: string) {
     try {
         result = await createUserWithEmailAndPassword(auth, email, password).then(async cred => {
             return await setDoc(doc(db, "users", cred.user.uid), {
-                id: cred.user.uid,
-                profile: {
                     name: null,
                     email: email,
                     pic: null,
@@ -26,7 +24,6 @@ export default async function signUp(email: string, password: string) {
                     diet: [],
                     fit: [],
                     app: [],
-                }
             })
         })
     } catch (e) {

@@ -54,7 +54,6 @@ function ProfileForm(props: any) {
 
 
   async function saveProfile(name:string, phone:string, fit:number, bday:string) {
-    console.log(user)
 
     if (user) {
     const userRef = doc(db, "users", user.uid)
