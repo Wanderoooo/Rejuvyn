@@ -1,28 +1,40 @@
-import React from 'react';
-import * as Switch from '@radix-ui/react-switch';
+import React, { useState } from 'react';
 import style from './MedicineToggle.module.css'
+import { Space, Switch } from 'antd';
+import { Flex } from '@radix-ui/themes';
+import { Label } from '@radix-ui/react-form';
+import { getAuth } from 'firebase/auth';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 
-export default function MedicineToggle({medicines} : {medicines: Array<any>}) {
-  let toggles = []
-  medicines = [{id: 1, name: 'synthoid', instruction: 'weird', next_does: 24}, {id: 1, name: 'next', instruction: 'weird', next_does: 24}]
-  toggles = medicines.map((medicine) => {
+export default function MedicineToggle() {
+  let toggles : any = []
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const [profile, setProfile] = useState<object[]>([])
+
+  if (user) {
+    const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
+    toggles = doc.data()?.med.content.map((medicine : any) => {
     return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-      <label className={style.Label} htmlFor={medicine.name} style={{ paddingRight: 15 }}>
-      {medicine.name}
-      </label>
-      <Switch.Root className={style.SwitchRoot} id={medicine.id}>
-        <Switch.Thumb className={style.SwitchThumb} />
-      </Switch.Root>
-      <label className={style.Label} htmlFor={medicine.name} style={{ paddingLeft: 15 }}>not taken</label>
-    </div>
+      <Flex gap="2">
+      <label>{medicine.name}</label>
+      <Switch checkedChildren="taken" unCheckedChildren="not taken" />
+      </Flex>
     )
   })
+    });
+  }
+
+  
 
   return (
   <div>
-    <h1>Medicine</h1>
+    {toggles.length === 0 ? <h2>You have not added any prescription</h2> : <h1>Medicine</h1>}
+    <Flex direction="column" gap="2">
     {toggles}
+    </Flex>
   </div>
 );
 }
