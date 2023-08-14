@@ -35,7 +35,6 @@ const SubmitButton = ({ form }: { form: FormInstance }) => {
 };
 
 function ProfileForm(props: any) {
-  const propuse = props.handleSubmit
   const [form] = Form.useForm();
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
