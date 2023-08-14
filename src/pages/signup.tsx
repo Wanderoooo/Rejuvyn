@@ -24,7 +24,7 @@ export default function SignUp() {
       }
 
       console.log(result)
-      return router.push("/profile")
+      return router.push("/newuser")
   }
 
   return (
@@ -53,7 +53,7 @@ export default function SignUp() {
         </fieldset>
         <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-evenly' }}>
           <button className={`${style.Buttongreen} ${style.Button}`} type='submit'>Sign Up</button>
-          <p className={style.paragraph}>Already have an account? <Link href="./signin" className={style.Link}>Log In</Link></p>
+          <p className={style.paragraph}>Already have an account? <Link href="./login" className={style.Link}>Log In</Link></p>
         </div>
         </form>
       </Tabs.Content>

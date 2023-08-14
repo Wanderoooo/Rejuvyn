@@ -1,9 +1,9 @@
+import firebase_app from '../config';
 import React from 'react';
 import {
     onAuthStateChanged,
     getAuth,
 } from 'firebase/auth';
-import firebase_app from '@/firebase/config';
 import { ReactNode } from "react";
 
 interface Props {
