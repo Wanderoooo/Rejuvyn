@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import type { FormInstance } from 'antd';
-import { Button, Form, Input, Select, Space } from 'antd';
-import type { DatePickerProps } from 'antd';
+import { Button, Form, Input,Space, Upload} from 'antd';
 import { DatePicker } from 'antd';
 import { Flex } from '@radix-ui/themes';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import style from './ProfileForm.module.css'
 import { useRouter } from 'next/router';
+import { PlusOutlined } from '@ant-design/icons';
+
 
 
 
@@ -56,6 +57,13 @@ function ProfileForm(props: any) {
     router.push('./medication')
   }
 
+  const normFile = (e: any) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
+
   return (
     <div>
       <h1>Rejuvyn Profile Setup</h1>
@@ -63,6 +71,14 @@ function ProfileForm(props: any) {
       <Form.Item name="name" label="Full Name" rules={[{ required: true }]}>
         <Input onChange={e => setName(e.target.value)}/>
       </Form.Item>
+      <Form.Item label="Upload profile image" valuePropName="fileList" getValueFromEvent={normFile}>
+          <Upload action="/upload.do" listType="picture-card">
+            <div>
+              <PlusOutlined />
+              <div style={{ marginTop: 8 }}>Upload</div>
+            </div>
+          </Upload>
+        </Form.Item>
       <Form.Item name="birthday" label="Birthday" rules={[{ required: true }]}>
       <DatePicker onChange={(dayjs, dateString) => setPhone(dateString)}/>
       </Form.Item>

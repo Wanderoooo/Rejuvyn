@@ -19,7 +19,7 @@ function MedForm(props: any) {
 
   const router = useRouter()
 
-  function savePres(name:string, instr:string, am:number, unit:string, time:string) {
+  function savePres(name:string, instr:string, am:number, unit:string, time:string, isAdd: boolean) {
     const presInfo = {
       name: name,
       instr: instr,
@@ -30,6 +30,8 @@ function MedForm(props: any) {
 
     // !!! props.medArry.push(presInfo)
     //!!! upload & merge w google data
+
+    props.updateAdd(isAdd)
 
   }
 
@@ -58,7 +60,7 @@ function MedForm(props: any) {
         <Select
       defaultValue="tablet"
       style={{ width: 120 }}
-      onChange={(v, o) => setAmount(parseInt(v))}
+      onChange={(v, o) => setUnit(v)}
       options={[
         { value: 'tablet', label: 'tablet' },
         { value: 'capsule', label: 'capsule' },
@@ -70,7 +72,7 @@ function MedForm(props: any) {
         <Select
       defaultValue="day"
       style={{ width: 120 }}
-      onChange={(v, o) => setAmount(parseInt(v))}
+      onChange={(v, o) => setTime(v)}
       options={[
         { value: 'hour', label: 'hour' },
         { value: 'day', label: 'day' },
@@ -81,10 +83,15 @@ function MedForm(props: any) {
       </Form.Item>
       <Form.Item>
         <Space>
-          <Button type="primary" onClick={()=>savePres(name, instr, amount, unit, time)}>
+          <Button type="primary" onClick={()=>savePres(name, instr, amount, unit, time, false)}>
             Submit
             </Button>
           <Button htmlType="reset">Reset</Button>
+          <Button onClick={()=>savePres(name, instr, amount, unit, time, true)}>
+            Add another
+            </Button>
+            {props.isZero ? <section></section> :
+            <Button onClick={() => props.updateAdd(false)}>Cancel</Button>}
         </Space>
       </Form.Item>
     </Form>
