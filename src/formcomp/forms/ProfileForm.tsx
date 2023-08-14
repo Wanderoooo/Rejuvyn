@@ -6,10 +6,13 @@ import { Flex } from '@radix-ui/themes';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import style from './ProfileForm.module.css'
 import { useRouter } from 'next/router';
-import { PlusOutlined } from '@ant-design/icons';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from '@/firebase/config';
+import { getAuth } from 'firebase/auth';
 
 
-
+const auth = getAuth();
+const user = auth.currentUser;
 
 const SubmitButton = ({ form }: { form: FormInstance }) => {
   const [submittable, setSubmittable] = React.useState(false);
@@ -35,34 +38,43 @@ const SubmitButton = ({ form }: { form: FormInstance }) => {
   );
 };
 
+
+
 function ProfileForm(props: any) {
   const [form] = Form.useForm();
+
+
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [fit, setFit] = useState(0)
   const [bday, setBday] = useState("")
+  // const [pic, setPic] = useState([])
 
   const router = useRouter()
 
-  function saveProfile(name:string, phone:string, fit:number, bday:string) {
-    const basicInfo = {
+
+  async function saveProfile(name:string, phone:string, fit:number, bday:string) {
+    console.log(user)
+
+    if (user) {
+    const userRef = doc(db, "users", user.uid)
+    await updateDoc(userRef, {
       name: name,
       phone: phone,
-      fit: fit,
+      goal: fit,
       bday: bday
+  });
     }
-
-    //!!! upload & merge w google data
 
     router.push('./medication')
   }
 
-  const normFile = (e: any) => {
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e?.fileList;
-  };
+  // const normFile = (e: any) => {
+  //   if (Array.isArray(e)) {
+  //     setPic(e)
+  //   }
+  //   return e?.fileList;
+  // };
 
   return (
     <div>
@@ -71,16 +83,16 @@ function ProfileForm(props: any) {
       <Form.Item name="name" label="Full Name" rules={[{ required: true }]}>
         <Input onChange={e => setName(e.target.value)}/>
       </Form.Item>
-      <Form.Item label="Upload profile image" valuePropName="fileList" getValueFromEvent={normFile}>
-          <Upload action="/upload.do" listType="picture-card">
+      {/* <Form.Item label="Upload profile image (png/jpg)" valuePropName="fileList" getValueFromEvent={normFile}>
+          <Upload action="/upload.do" listType="picture-card" accept=".png, .jpeg, .jpg" maxCount={1}>
             <div>
               <PlusOutlined />
               <div style={{ marginTop: 8 }}>Upload</div>
             </div>
           </Upload>
-        </Form.Item>
+        </Form.Item> */}
       <Form.Item name="birthday" label="Birthday" rules={[{ required: true }]}>
-      <DatePicker onChange={(dayjs, dateString) => setPhone(dateString)}/>
+      <DatePicker onChange={(dayjs, dateString) => setBday(dateString)}/>
       </Form.Item>
       <Form.Item name="phone" label="Phone Number" rules={[{ required: true }]}>
         <Input type="tel" onChange={e => setPhone(e.target.value)}/>

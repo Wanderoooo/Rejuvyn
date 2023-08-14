@@ -24,7 +24,7 @@ export default function SignUp() {
       }
 
       console.log(result)
-      return router.push("/newuser")
+      return router.push("/setup")
   }
 
   return (
