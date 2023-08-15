@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './MedicineToggle.module.css'
 import { Space, Switch } from 'antd';
 import { Flex } from '@radix-ui/themes';
@@ -8,31 +8,43 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 
 export default function MedicineToggle() {
-  let toggles : any = []
+  const [toggles, setToggles] = useState<any[]>([])
+  const [hasMed, setHasMed] = useState(false)
   const auth = getAuth();
   const user = auth.currentUser;
 
-  const [profile, setProfile] = useState<object[]>([])
-
+  useEffect(() => {
+    let unsub
+    let togglesNew : any[] = []
   if (user) {
-    const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
-    toggles = doc.data()?.med.content.map((medicine : any) => {
+     unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
+    setHasMed(!doc.data()?.med.content.length)
+    const togglesMeds = doc.data()?.med.content
+    togglesNew = togglesMeds.map((med: any) => {
+    
     return (
       <Flex gap="2">
-      <label>{medicine.name}</label>
+      <label>{med.name}</label>
       <Switch checkedChildren="taken" unCheckedChildren="not taken" />
       </Flex>
     )
+    }
+    )
+
+    setToggles(togglesNew)
+
   })
-    });
   }
+  
+return unsub
+  }, [])
 
   
 
   return (
   <div>
-    {toggles.length === 0 ? <h2>You have not added any prescription</h2> : <h1>Medicine</h1>}
-    <Flex direction="column" gap="2">
+    {hasMed ? <h4>no pres</h4> : <h1>Medicine</h1>}
+    <Flex direction="column" gap="2" justify="center" align="end">
     {toggles}
     </Flex>
   </div>

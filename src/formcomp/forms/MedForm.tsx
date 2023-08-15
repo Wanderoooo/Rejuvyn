@@ -6,6 +6,9 @@ import { Flex, TextArea } from '@radix-ui/themes';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import style from './ProfileForm.module.css'
 import { useRouter } from 'next/router';
+import { getAuth } from 'firebase/auth';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 
 
 
@@ -13,19 +16,27 @@ function MedForm(props: any) {
   const [form] = Form.useForm();
   const [name, setName] = useState("")
   const [instr, setInstr] = useState("")
-  const [amount, setAmount] = useState(0)
-  const [unit, setUnit] = useState("")
-  const [time, setTime] = useState("")
+  const [amount, setAmount] = useState(1)
+  const [unit, setUnit] = useState("tablet")
+  const [time, setTime] = useState("day")
 
   const router = useRouter()
+  const auth = getAuth();
+  const user = auth.currentUser;
 
-  function savePres(name:string, instr:string, am:number, unit:string, time:string, isAdd: boolean) {
-    const presInfo = {
+  async function savePres(name:string, instr:string, am:number, unit:string, time:string, isAdd: boolean) {
+    const newMed = {
       name: name,
-      instr: instr,
-      amount: am,
-      unit: unit,
-      time: time
+      week: instr,
+      total: (am + " " + unit + " per " +  time)
+    }
+
+    if (user) {
+      const userRef = doc(db, "users", user.uid)
+      await updateDoc(userRef, {
+        "med.content": arrayUnion(newMed)
+      }
+      )
     }
 
     // !!! props.medArry.push(presInfo)
@@ -35,16 +46,40 @@ function MedForm(props: any) {
 
   }
 
+  const SubmitButton = ({ form }: { form: FormInstance }) => {
+    const [submittable, setSubmittable] = React.useState(false);
+  
+    // Watch all values
+    const values = Form.useWatch([], form);
+  
+    React.useEffect(() => {
+      form.validateFields({ validateOnly: true }).then(
+        () => {
+          setSubmittable(true);
+        },
+        () => {
+          setSubmittable(false);
+        },
+      );
+    }, [values]);
+  
+    return (
+      <Button type="primary" htmlType="submit" disabled={!submittable}>
+        Submit
+      </Button>
+    );
+  };
+
   return (
     <div>
     <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" className={style.form}>
       <Form.Item name="name" label="Prescription name" rules={[{ required: true }]}>
         <Input onChange={e => setName(e.target.value)}/>
       </Form.Item>
-      <Form.Item name="instr" label="Instruction" rules={[{ required: true }]}>
-        <TextArea onChange={e => setInstr(e.target.value)}/>
+      <Form.Item name="instruction" label="Instruction" rules={[{ required: true }]}>
+        <Input onChange={e => setInstr(e.target.value)}/>
       </Form.Item>
-      <Form.Item name="" label="Intake info" rules={[{ required: true }]}>
+      <Form.Item name="Medication Period" label="Intake info" >
         <Select
       defaultValue="1"
       style={{ width: 120 }}
@@ -83,14 +118,12 @@ function MedForm(props: any) {
       </Form.Item>
       <Form.Item>
         <Space>
-          <Button type="primary" onClick={()=>savePres(name, instr, amount, unit, time, false)}>
-            Submit
-            </Button>
+        <SubmitButton form={form} />
           <Button htmlType="reset">Reset</Button>
           <Button onClick={()=>savePres(name, instr, amount, unit, time, true)}>
             Add another
             </Button>
-            {props.isZero ? <section></section> :
+            {!props.isZero &&
             <Button onClick={() => props.updateAdd(false)}>Cancel</Button>}
         </Space>
       </Form.Item>
