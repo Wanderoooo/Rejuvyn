@@ -28,8 +28,8 @@ export default async function signUp(email: string, password: string) {
 
                     symp: {
                         l_1: "Symptom",
-                        l_2: "Location",
-                        l_3: "Persistence",
+                        l_2: "Description",
+                        l_3: "Track on",
                         content: [],
                     },
                     med: {

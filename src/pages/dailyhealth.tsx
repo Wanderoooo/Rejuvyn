@@ -1,11 +1,13 @@
 import CheckIn from "@/components/CheckIn";
 import SummaryTable from "@/components/SummaryTable";
-import { Grid } from "@radix-ui/themes";
+import SympForm from "@/formcomp/forms/SympForm";
+import { Flex } from "@radix-ui/themes";
 
 export default function DailyHealth() {
   return (
-    <div>
+    <Flex direction="column" align="center" justify="center">
       <CheckIn />
-    </div>
+      <SympForm />
+    </Flex>
   )
 }
