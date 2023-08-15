@@ -109,7 +109,7 @@ function ProfileForm(props: any) {
       </Form.Item>
     </Form>
     <Flex align="center" gap="2">
-    <h2>Let's set up your prescriptions next!</h2> <ArrowRightIcon />
+    <h2>Let&apos;s set up your prescriptions next!</h2> <ArrowRightIcon />
     </Flex>
     </div>
   );
