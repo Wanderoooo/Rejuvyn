@@ -24,6 +24,7 @@ export default async function signUp(email: string, password: string) {
                         l_2: "Specialty",
                         l_3: "Contact Number",
                         content: [],
+                        total: 0,
                     },
 
                     symp: {
@@ -31,6 +32,7 @@ export default async function signUp(email: string, password: string) {
                         l_2: "Location",
                         l_3: "Persistence",
                         content: [],
+                        total: 0,
                     },
                     med: {
                         l_1: "Name",
@@ -99,6 +101,8 @@ export default async function signUp(email: string, password: string) {
                             total: 0,
                         },
                     ]},
+
+                    record: []
 
             })
         })

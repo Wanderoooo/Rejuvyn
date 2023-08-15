@@ -16,7 +16,6 @@ export default function Dashboard() {
 
   
   const auth = getAuth();
-
   const user = auth.currentUser
 
 useEffect(() => {

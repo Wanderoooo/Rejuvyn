@@ -1,12 +1,16 @@
 import { Flex } from "@radix-ui/themes";
 import { Select } from "antd";
+import { useState } from "react";
 
 
 
-export default function FitnessTrack() {
-  function handleChange() {
-    console.log("h1")
-  }
+export default function FitnessTrack(props:any) {
+  const [back, setBack] = useState(0)
+  const [ab, setAb] = useState(0)
+  const [legs, setLegs] = useState(0)
+  const [arms, setArms] = useState(0)
+
+
 
   return (
     <div>
@@ -17,7 +21,9 @@ export default function FitnessTrack() {
         <Select
       defaultValue="0"
       style={{ width: 120 }}
-      onChange={handleChange}
+      onChange={(v, o) => {
+        setBack(parseInt(v))
+        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -33,7 +39,9 @@ export default function FitnessTrack() {
         <Select
       defaultValue="0"
       style={{ width: 120 }}
-      onChange={handleChange}
+      onChange={(v, o) => {
+        setAb(parseInt(v))
+        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -49,7 +57,9 @@ export default function FitnessTrack() {
         <Select
       defaultValue="0"
       style={{ width: 120 }}
-      onChange={handleChange}
+      onChange={(v, o) => {
+        setLegs(parseInt(v))
+        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -65,7 +75,9 @@ export default function FitnessTrack() {
         <Select
       defaultValue="0"
       style={{ width: 120 }}
-      onChange={handleChange}
+      onChange={(v, o) => {
+        setArms(parseInt(v))
+        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },

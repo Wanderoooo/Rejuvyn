@@ -7,7 +7,7 @@ import { getAuth } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 
-export default function MedicineToggle() {
+export default function MedicineToggle(props:any) {
   const [toggles, setToggles] = useState<any[]>([])
   const [hasMed, setHasMed] = useState(false)
   const auth = getAuth();
@@ -20,12 +20,31 @@ export default function MedicineToggle() {
      unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
     setHasMed(!doc.data()?.med.content.length)
     const togglesMeds = doc.data()?.med.content
-    togglesNew = togglesMeds.map((med: any) => {
+
+    const date = new Date()
+    let record : any[]= []
+    for (let i = 0; i < togglesMeds.length; i++) {
+      let newRec = {
+        name: togglesMeds[i].name,
+        taken: false,
+      }
+
+      record.push(newRec)
+    }
+
+    let a = -1
+
+    function updateToggled(checked: boolean, index: number) {
+      record[index].taken = checked
+      props.handleSave(record)
+    }
+
+    togglesNew = togglesMeds.map((med: any, index: number) => {
     
     return (
       <Flex gap="2">
       <label>{med.name}</label>
-      <Switch checkedChildren="taken" unCheckedChildren="not taken" />
+      <Switch checkedChildren="taken" unCheckedChildren="not taken" onClick={(checked, e) => updateToggled(checked, index)} />
       </Flex>
     )
     }
@@ -39,7 +58,7 @@ export default function MedicineToggle() {
 return unsub
   }, [])
 
-  
+
 
   return (
   <div>

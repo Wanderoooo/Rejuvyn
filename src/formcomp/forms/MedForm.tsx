@@ -118,13 +118,18 @@ function MedForm(props: any) {
       </Form.Item>
       <Form.Item>
         <Space>
+          <section onClick={() => {
+            savePres(name, instr, amount, unit, time, true) 
+            props.updateAdd("no")
+          }}>
         <SubmitButton form={form} />
+        </section>
           <Button htmlType="reset">Reset</Button>
           <Button onClick={()=>savePres(name, instr, amount, unit, time, true)}>
             Add another
             </Button>
             {!props.isZero &&
-            <Button onClick={() => props.updateAdd(false)}>Cancel</Button>}
+            <Button onClick={() => props.updateAdd("no")}>Cancel</Button>}
         </Space>
       </Form.Item>
     </Form>
