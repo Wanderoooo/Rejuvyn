@@ -5,7 +5,7 @@ export default function SummaryTable(p: any) {
   const props = p.item
 
   let tableBody = props.content.map((data:any) => {
-    return (<Table.Row>
+    return (<Table.Row key={data.name}>
       <Table.RowHeaderCell>{data.name}</Table.RowHeaderCell>
       <Table.Cell>{data.week}</Table.Cell>
       <Table.Cell>{data.total}</Table.Cell>

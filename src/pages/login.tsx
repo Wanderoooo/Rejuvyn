@@ -52,9 +52,9 @@ function SignIn() {
         </label>
         <input className={style.Input} id="currentPassword" type="password" required onChange={(e) => setPassword(e.target.value)}/>
       </fieldset>
-      <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-evenly' }}>
+      <div style={{ display: "flex", marginTop: 20, justifyContent: "space-evenly" }}>
         <button className={`${style.Buttongreen} ${style.Button}`}>Log In</button>
-        <p className={style.paragraph}>Don't have an account? <br></br><Link href="./signup" className={style.Link}>Sign up</Link></p>
+        <p className={style.paragraph}>Don&apos;t have an account? <br></br><Link href="./signup" className={style.Link}>Sign up</Link></p>
       </div>
       </form>
     </Tabs.Content>

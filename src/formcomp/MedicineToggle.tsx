@@ -11,17 +11,16 @@ export default function MedicineToggle(props:any) {
   const [toggles, setToggles] = useState<any[]>([])
   const [hasMed, setHasMed] = useState(false)
   const auth = getAuth();
-  const user = auth.currentUser;
 
   useEffect(() => {
     let unsub
     let togglesNew : any[] = []
+    const user = auth.currentUser;
   if (user) {
      unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
     setHasMed(!doc.data()?.med.content.length)
     const togglesMeds = doc.data()?.med.content
 
-    const date = new Date()
     let record : any[]= []
     for (let i = 0; i < togglesMeds.length; i++) {
       let newRec = {
@@ -42,7 +41,7 @@ export default function MedicineToggle(props:any) {
     togglesNew = togglesMeds.map((med: any, index: number) => {
     
     return (
-      <Flex gap="2">
+      <Flex gap="2" key={index}>
       <label>{med.name}</label>
       <Switch checkedChildren="taken" unCheckedChildren="not taken" onClick={(checked, e) => updateToggled(checked, index)} />
       </Flex>
