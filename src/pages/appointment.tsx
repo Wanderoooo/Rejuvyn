@@ -1,6 +1,7 @@
 import Calendars from "@/components/Calendars"
 export default function Appointment() {
   return (
-    <Calendars />
+    <h1>hi</h1>
+    // <Calendars />
   )
 }

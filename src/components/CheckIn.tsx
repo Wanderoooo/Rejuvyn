@@ -8,7 +8,7 @@ import DietTrack from '@/formcomp/DietTrack';
 import { getAuth } from 'firebase/auth';
 import { Flex } from '@radix-ui/themes';
 import { Button } from 'antd';
-import { arrayUnion, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, increment, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 
 export default function CheckIn() {
@@ -36,7 +36,8 @@ export default function CheckIn() {
         if (user) {
           const userRef = doc(db, "users", user.uid)
           await updateDoc(userRef, {
-            rec: arrayUnion(newRec)
+            rec: arrayUnion(newRec),
+            cons: increment(1)
           }
             );
           }
