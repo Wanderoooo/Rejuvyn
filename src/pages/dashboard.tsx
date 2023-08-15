@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [med, setMed] = useState({l_1: "", l_2: "", l_3: "", content: []})
   const [diet, setDiet] = useState({l_1: "", l_2: "", l_3: "", content: []})
   const [fit, setFit] = useState({l_1: "", l_2: "", l_3: "", content: []})
-  const [docs, setDocs] = useState({l_1: "", l_2: "", l_3: "", content: []})
+
 
   
   const auth = getAuth();
@@ -25,7 +25,6 @@ useEffect(() => {
       setMed(doc.data()?.med)
       setDiet(doc.data()?.diet)
       setFit(doc.data()?.fit)
-      setDocs(doc.data()?.doctors)
     }) 
   }
     return unsub
@@ -46,10 +45,6 @@ useEffect(() => {
       <section>
       <h1>Weekly physical activity</h1> 
       <SummaryTable item={fit}/> {/*Back, ab, legs, arms,,, hours, total*/}
-      </section>
-      <section>
-      <h1>Your Doctors</h1>
-      <SummaryTable item={docs}/> {/*Location,,, pain lvl, duration*/}
       </section>
     </Grid>
   )

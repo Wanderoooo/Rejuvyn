@@ -20,11 +20,10 @@ function MedForm(props: any) {
   const [unit, setUnit] = useState("tablet")
   const [time, setTime] = useState("day")
 
-  const router = useRouter()
   const auth = getAuth();
   const user = auth.currentUser;
 
-  async function savePres(name:string, instr:string, am:number, unit:string, time:string, isAdd: boolean) {
+  async function savePres(name:string, instr:string, am:number, unit:string, time:string) {
     const newMed = {
       name: name,
       week: instr,
@@ -38,11 +37,6 @@ function MedForm(props: any) {
       }
       )
     }
-
-    // !!! props.medArry.push(presInfo)
-    //!!! upload & merge w google data
-
-    props.updateAdd(isAdd)
 
   }
 
@@ -119,15 +113,12 @@ function MedForm(props: any) {
       <Form.Item>
         <Space>
           <section onClick={() => {
-            savePres(name, instr, amount, unit, time, true) 
             props.updateAdd("no")
+            savePres(name, instr, amount, unit, time) 
           }}>
         <SubmitButton form={form} />
         </section>
           <Button htmlType="reset">Reset</Button>
-          <Button onClick={()=>savePres(name, instr, amount, unit, time, true)}>
-            Add another
-            </Button>
             {!props.isZero &&
             <Button onClick={() => props.updateAdd("no")}>Cancel</Button>}
         </Space>

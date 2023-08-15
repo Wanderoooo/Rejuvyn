@@ -24,7 +24,6 @@ export default async function signUp(email: string, password: string) {
                         l_2: "Specialty",
                         l_3: "Contact Number",
                         content: [],
-
                     },
 
                     symp: {

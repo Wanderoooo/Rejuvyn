@@ -19,11 +19,10 @@ function DoctorsForm(props: any) {
   const [spec, setSpec] = useState("")
   const [phone, setPhone] = useState("")
 
-  const router = useRouter() 
   const auth = getAuth();
   const user = auth.currentUser;
 
-  async function saveDoc() {
+  async function saveDoc(name:string, spec:string, phone: string) {
     const newDoc = {
       name: name,
       week: spec,
@@ -37,12 +36,6 @@ function DoctorsForm(props: any) {
       }
       )
     }
-
-    // !!! props.medArry.push(presInfo)
-    //!!! upload & merge w google data
-
-    // props.updateAdd(isAdd)
-
   }
 
   const SubmitButton = ({ form }: { form: FormInstance }) => {
@@ -63,7 +56,7 @@ function DoctorsForm(props: any) {
     }, [values]);
   
     return (
-      <Button type="primary" htmlType="submit" disabled={!submittable}>
+      <Button type="primary" htmlType="submit" disabled={!submittable} >
         Submit
       </Button>
     );
@@ -71,7 +64,7 @@ function DoctorsForm(props: any) {
 
   return (
     <div>
-    <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" className={style.form}>
+    <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" className={style.form} >
       <Form.Item name="name" label="Doctor's Name" rules={[{ required: true }]}>
         <Input onChange={e => setName(e.target.value)}/>
       </Form.Item>
@@ -79,22 +72,18 @@ function DoctorsForm(props: any) {
         <Input onChange={e => setSpec(e.target.value)}/>
       </Form.Item>
       <Form.Item name="phone #" label="Contact Phone #" rules={[{ required: true }]} >
-        <Input type="tel" />
+        <Input type="text" onChange={e => setPhone(e.target.value)}/>
       </Form.Item>
       <Form.Item>
         <Space>
           <section onClick={() => {
-            saveDoc() 
-            props.updateAdd("no")
-          }}>
+            props.handleDisplay("pro")
+      saveDoc(name, spec, phone)}}>
         <SubmitButton form={form} />
         </section>
           <Button htmlType="reset">Reset</Button>
-          <Button onClick={()=>saveDoc()}>
-            Add another
-            </Button>
             {!props.isZero &&
-            <Button onClick={() => props.updateAdd("no")}>Cancel</Button>}
+            <Button onClick={() => props.handleDisplay("pro")}>Cancel</Button>}
         </Space>
       </Form.Item>
     </Form>
