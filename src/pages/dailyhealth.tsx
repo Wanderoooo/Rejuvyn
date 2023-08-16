@@ -7,10 +7,12 @@ import { getAuth } from "firebase/auth";
 import { arrayRemove, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import React from 'react'
 import { db } from "@/firebase/config";
+import { useEffect, useState } from "react";
 
 export default function DailyHealth() {
-  const [sympD, setSympD] = React.useState("")
-  const [symp, setSymp] = React.useState({l_1: "", l_2: "", l_3: "", content: [{name:"", week: "", total: ""}]})
+  const [sympD, setSympD] = useState("")
+  const [symp, setSymp] = useState({l_1: "", l_2: "", l_3: "", content: [{name:"", week: "", total: ""}]})
+  const [isAdd, setIsAdd] = useState("yes")
   
 
   const auth = getAuth();
@@ -30,7 +32,7 @@ React.useEffect(() => {
     return unsub
   }, [])
 
-  async function findDeleteUpdate(sympD: string) {
+  async function findDeleteUpdate() {
     const updatedSymp = symp.content.filter(m => m.name === sympD)
     if (user) {
       const userRef = doc(db, "users", user.uid)
@@ -43,22 +45,26 @@ React.useEffect(() => {
   return (
     <Flex direction="column" align="center" justify="center">
       <CheckIn />
-      {symp.content.length === 0 ? 
-      <SympForm />
-    :
-    <Flex direction="column" align="center">
-        <h2>Select symptom to be archived</h2>
+      {symp.content.length === 0 || isAdd === "yes" ?
+      
+      <Flex direction="column" align="center">
+        <h1>Add your prescriptions</h1>
+        <SympForm medArray={symp.content} updateAdd={setIsAdd} isZero={symp.content.length === 0}/>
+      </Flex>
+
+      :
+      <Flex direction="column" align="center">
+        <h2>Select prescription to be deleted</h2>
          <Select
       style={{ width: 120 }}
-      defaultValue={sympOptions[0]?.label}
+      defaultValue="----"
       onChange={(v, o) => setSympD(v)}
       options={sympOptions}
       />
-
-      <Button onClick={()=> {
-        findDeleteUpdate(sympD)
-        }}>Delete</Button>
-
+      <button onClick={()=> {
+        findDeleteUpdate()
+        setIsAdd("no")
+        }}>Delete</button>
       </Flex>}
     </Flex>
   )
