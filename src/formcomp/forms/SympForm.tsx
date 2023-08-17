@@ -83,6 +83,7 @@ function SympForm(props: any) {
         <SubmitButton form={form} />
         </section>
           <Button htmlType="reset">Reset</Button>
+          <Button onClick={props.updateAdd("no")}>Archive Symptom</Button>
         </Space>
       </Form.Item>
     </Form>
