@@ -20,7 +20,7 @@ export default function ProgressBar() {
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
+        style={{ transform: `translateX(-${100 - 17}%)` }}
       />
     </Progress.Root>
     </section>
@@ -38,7 +38,7 @@ export default function ProgressBar() {
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
+        style={{ transform: `translateX(-${100 - 50}%)` }}
       />
     </Progress.Root>
     </section>
@@ -47,7 +47,7 @@ export default function ProgressBar() {
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
+        style={{ transform: `translateX(-${100 - 70}%)` }}
       />
     </Progress.Root>
     </section>
@@ -56,7 +56,7 @@ export default function ProgressBar() {
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
+        style={{ transform: `translateX(-${100 - 40}%)` }}
       />
     </Progress.Root>
     </section>

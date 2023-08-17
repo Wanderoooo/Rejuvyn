@@ -29,7 +29,7 @@ export default function Navbar() {
           <NavigationMenu.Item>
               <Link className={style.NavigationMenuLink} href='/'>
               <Image
-                  src="/images.png"
+                  src="/logo.png"
                   width={29}
                   height={29}
                   alt="Picture landing page icon"

@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react"
 import { db } from "@/firebase/config";
-import { Table } from "@radix-ui/themes"
+import { Flex, Table } from "@radix-ui/themes"
 import style from '../components/SummaryTable.module.css'
 
 
@@ -34,7 +34,7 @@ export default function Record() {
   }
 
   let tableBody = record.map((data:any, index:number) => {
-    return (<Table.Row>
+    return (<Table.Row key={index}>
       <Table.RowHeaderCell>{data.date}</Table.RowHeaderCell>
       <Table.Cell>{data.medRec.length === 0 ? "You have no prescription" : getAllMedInfo(data.medRec, index)}</Table.Cell>
       <Table.Cell>{`Back: ${data.fitRec.back} \n Abs: ${data.fitRec.abs} \n Legs: ${data.fitRec.legs} \n Arms: ${data.fitRec.arms}`}</Table.Cell>
@@ -43,6 +43,7 @@ export default function Record() {
   })
 
  return (
+  <Flex align="center" justify="center">
   <Table.Root className={style.table}>
   <Table.Header>
     <Table.Row>
@@ -57,5 +58,6 @@ export default function Record() {
     {tableBody}
   </Table.Body>
 </Table.Root>
+</Flex>
  )
 }

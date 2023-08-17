@@ -48,13 +48,12 @@ React.useEffect(() => {
       {symp.content.length === 0 || isAdd === "yes" ?
       
       <Flex direction="column" align="center">
-        <h1>Add your prescriptions</h1>
         <SympForm medArray={symp.content} updateAdd={setIsAdd} isZero={symp.content.length === 0}/>
       </Flex>
 
       :
       <Flex direction="column" align="center">
-        <h2>Select prescription to be deleted</h2>
+        <h2>Select symptom to delete</h2>
          <Select
       style={{ width: 120 }}
       defaultValue="----"

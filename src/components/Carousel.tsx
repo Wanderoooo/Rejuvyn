@@ -4,15 +4,18 @@ import style from './Carousel.module.css'
 
 function DemoCarousel() {
         return (
-            <Carousel autoPlay={true} showThumbs={false} className={style.container} showArrows={false}>
+            <Carousel autoPlay={true} showThumbs={false} className={style.container}>
                 <div>
-                    <img src="/images.png"/>
+                    <img src="/dash.png"/>
                 </div>
                 <div>
-                    <img src="assets/2.jpeg" />
+                    <img src="med.png" />
                 </div>
                 <div>
-                    <img src="assets/3.jpeg" />
+                    <img src="symp.png" />
+                </div>
+                <div>
+                    <img src="daily.png" />
                 </div>
             </Carousel>
         );
