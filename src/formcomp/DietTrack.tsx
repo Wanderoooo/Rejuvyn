@@ -9,6 +9,11 @@ export default function DietTrack(props:any) {
   const [pro, setPro] = useState(0)
   const [fib, setFib] = useState(0)
 
+  function save(vitaming: number, carbog: number, prog: number, fibg: number) {
+
+    props.handleSave({vitaming: vitaming, carbog: carbog, prog:prog, fibg: fibg})
+  }
+
   return (
     <div>
       <h1>Diet</h1>
@@ -17,7 +22,7 @@ export default function DietTrack(props:any) {
         <label>Vitamins  </label>
         <Input type="number" min="0" onChange={(e) => {
           setVit(parseInt(e.target.value))
-          props.handleSave({vitaming: vit, carbog: carbo, prog: pro, fibg: fib})}}/>
+          save(parseInt(e.target.value) || 0, carbo, pro, fib)}}/>
       <label>g</label>
       </Flex>
 
@@ -25,7 +30,7 @@ export default function DietTrack(props:any) {
         <label>Carbohydrate  </label>
         <Input type="number" min="0" onChange={(e) => {
           setCarbo(parseInt(e.target.value))
-          props.handleSave({vitaming: vit, carbog: carbo, prog: pro, fibg: fib})}} />
+          save(vit, parseInt(e.target.value) || 0, pro, fib)}} />
       <label>g</label>
       </Flex>
 
@@ -33,7 +38,7 @@ export default function DietTrack(props:any) {
         <label>Protein  </label>
         <Input type="number" min="0" onChange={(e) => { 
           setPro(parseInt(e.target.value))
-          props.handleSave({vitaming: vit, carbog: carbo, prog: pro, fibg: fib})}} />
+          save(vit, carbo, parseInt(e.target.value) || 0, fib)}} />
       <label>g</label>
       </Flex>
 
@@ -41,7 +46,7 @@ export default function DietTrack(props:any) {
         <label>Fiber  </label>
         <Input type="number" min="0" onChange={(e) => { 
           setFib(parseInt(e.target.value))
-          props.handleSave({vitaming: vit, carbog: carbo, prog: pro, fibg: fib})}} />
+          save(vit, carbo, pro, parseInt(e.target.value) || 0)}} />
       <label>g</label>
       </Flex>
     </Flex>

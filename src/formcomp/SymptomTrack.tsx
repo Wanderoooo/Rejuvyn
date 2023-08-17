@@ -11,7 +11,6 @@ export default function SymptomTrack() {
         <label>Location</label>
         <input type="text"/>
       </section>
-
       <section>
         <label>Description</label>
         <textarea></textarea>

@@ -23,7 +23,7 @@ export default function FitnessTrack(props:any) {
       style={{ width: 120 }}
       onChange={(v, o) => {
         setBack(parseInt(v))
-        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
+        props.handleSave({back: parseInt(v) || 0, abs: ab, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -41,7 +41,7 @@ export default function FitnessTrack(props:any) {
       style={{ width: 120 }}
       onChange={(v, o) => {
         setAb(parseInt(v))
-        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
+        props.handleSave({back: back, abs: parseInt(v) || 0, legs: legs, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -59,7 +59,7 @@ export default function FitnessTrack(props:any) {
       style={{ width: 120 }}
       onChange={(v, o) => {
         setLegs(parseInt(v))
-        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
+        props.handleSave({back: back, abs: ab, legs: parseInt(v) || 0, arms: arms})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },
@@ -77,7 +77,7 @@ export default function FitnessTrack(props:any) {
       style={{ width: 120 }}
       onChange={(v, o) => {
         setArms(parseInt(v))
-        props.handleSave({back: back, abs: ab, legs: legs, arms: arms})}}
+        props.handleSave({back: back, abs: ab, legs: legs, arms: parseInt(v) || 0})}}
       options={[
         { value: '0', label: '0' },
         { value: '1', label: '1' },

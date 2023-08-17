@@ -54,8 +54,8 @@ export default function Navbar() {
             </NavigationMenu.Item>
 
             <NavigationMenu.Item>
-              <Link className={style.NavigationMenuLink} href={user ? './appointment' : './login'}>
-                Appointment
+              <Link className={style.NavigationMenuLink} href={user ? './record' : './login'}>
+                Record
               </Link>
             </NavigationMenu.Item>
           </NavigationMenu.List>

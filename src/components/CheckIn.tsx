@@ -8,14 +8,14 @@ import DietTrack from '@/formcomp/DietTrack';
 import { getAuth } from 'firebase/auth';
 import { Flex } from '@radix-ui/themes';
 import { Button } from 'antd';
-import { arrayUnion, doc, increment, onSnapshot, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, increment, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 
 export default function CheckIn() {
 
   const [medRecord, setMedRecord] = useState<any>([])
-  const [fitRecord, setFitRecord] = useState<any>({})
-  const [dietRecord, setDietRecord] = useState<any>({})
+  const [fitRecord, setFitRecord] = useState<any>({back: 0, abs: 0, legs : 0, arms: 0})
+  const [dietRecord, setDietRecord] = useState<any>({vitaming:0, carbog: 0, prog: 0, fibg: 0})
   // date: `${date.getDate()} of month ${date.getMonth()}, ${date.getFullYear()}`
   const auth = getAuth();
   const user = auth.currentUser
@@ -30,13 +30,11 @@ export default function CheckIn() {
           fitRec: fitRecord,
           dietRec: dietRecord
         }
-
         console.log(newRec)
-
         if (user) {
           const userRef = doc(db, "users", user.uid)
           await updateDoc(userRef, {
-            rec: arrayUnion(newRec),
+            record: arrayUnion(newRec),
             cons: increment(1)
           }
             );
