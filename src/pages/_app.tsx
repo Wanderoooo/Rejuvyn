@@ -9,7 +9,7 @@ import SideNav from '@/components/SideNav';
 import { useState, useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [width, setWidth] = useState(1000);
+  const [width, setWidth] = useState(699);
   const breakpoint = 700;
   
   useEffect(() => {

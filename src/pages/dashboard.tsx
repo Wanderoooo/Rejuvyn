@@ -44,11 +44,11 @@ useEffect(() => {
       </section>
       <section>
       <h1>Diet</h1>
-      <SummaryTable item={diet}/> {/*Carbs, Protein, Sodium,,, amount, total */}
+      <SummaryTable item={diet}/>
       </section>
       <section>
       <h1>Weekly physical activity</h1> 
-      <SummaryTable item={fit}/> {/*Back, ab, legs, arms,,, hours, total*/}
+      <SummaryTable item={fit}/>
       </section>
       <section>
       <h1>Tracked Symptoms</h1> 

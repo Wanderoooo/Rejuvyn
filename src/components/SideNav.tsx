@@ -47,7 +47,7 @@ export default function SideNav() {
           <DropdownMenu.Item className={style.DropdownMenuItem} onSelect={() => router.push(user ? './record' : './login')}>
             Record
           </DropdownMenu.Item>
-          <DropdownMenu.Item className={style.DropdownMenuItem}>
+          <DropdownMenu.Item className={style.DropdownMenuItem} onSelect={() => router.push(user ? './profile' : './login')}>
             Profile
           </DropdownMenu.Item>
           <DropdownMenu.Separator className={style.DropdownMenuSeparator} />
