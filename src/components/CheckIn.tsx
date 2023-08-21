@@ -35,7 +35,10 @@ export default function CheckIn() {
           const userRef = doc(db, "users", user.uid)
           const userSnap = await getDoc(userRef);
           const oldFitContent = userSnap.data()?.fit.content
-          let newFitContent
+          const oldDietContent = userSnap.data()?.diet.content
+
+          let newFitContent = []
+          let newDietContent = []
 
           if(userSnap.data()?.cons % 8 == 0) {
             newFitContent = oldFitContent.map((exercise : any, index: number) => {
@@ -44,19 +47,38 @@ export default function CheckIn() {
                 week: fitRecord[Object.keys(fitRecord)[index]],
                 total: fitRecord[Object.keys(fitRecord)[index]] + exercise.total,
               }
-            })} else {
+            })
+            
+            newDietContent = oldDietContent.map((diet : any, index: number) => {
+              return {
+                ...diet,
+                week: dietRecord[Object.keys(dietRecord)[index]],
+                total: dietRecord[Object.keys(dietRecord)[index]] + diet.total,
+              }
+            })
+          
+          } else {
               newFitContent = oldFitContent.map((exercise : any, index: number) => {
                 return {
                   ...exercise,
                   week: fitRecord[Object.keys(fitRecord)[index]] + exercise.week,
                   total: fitRecord[Object.keys(fitRecord)[index]] + exercise.total,
-                }})}
+                }})
+              
+                newDietContent = oldDietContent.map((diet : any, index: number) => {
+                  return {
+                    ...diet,
+                    week: dietRecord[Object.keys(dietRecord)[index]],
+                    total: dietRecord[Object.keys(dietRecord)[index]] + diet.total,
+                  }
+                })}
             
 
           await updateDoc(userRef, {
             record: arrayUnion(newRec),
             cons: increment(1),
-            "fit.content": newFitContent
+            "fit.content": newFitContent,
+            "diet.content": newDietContent
           });
         }
       }

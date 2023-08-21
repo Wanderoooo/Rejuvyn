@@ -10,7 +10,7 @@ export default async function signUp(email: string, password: string) {
     let error : any = null
 
     try {
-        result = await createUserWithEmailAndPassword(auth, email, password).then(async cred => {
+            await createUserWithEmailAndPassword(auth, email, password).then(async cred => {
             return await setDoc(doc(db, "users", cred.user.uid), {
                     name: null,
                     email: email,
@@ -105,9 +105,12 @@ export default async function signUp(email: string, password: string) {
 
             })
         })
+
+        result = true;
     } catch (e) {
         error = e;
     }
 
+    console.log(result)
     return { result, error };
 }
