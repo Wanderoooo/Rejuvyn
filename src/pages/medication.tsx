@@ -55,7 +55,10 @@ useEffect(() => {
         <h2>Select prescription to be deleted</h2>
          <Select
       style={{ width: 120 }}
-      defaultValue="----"
+      defaultValue={() => {
+        setPresD(medOptions[0].label)
+        return medOptions[0].label
+        }}
       onChange={(v, o) => setPresD(v)}
       options={medOptions}
       />

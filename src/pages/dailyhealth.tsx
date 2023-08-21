@@ -56,13 +56,16 @@ React.useEffect(() => {
         <h2>Select symptom to delete</h2>
          <Select
       style={{ width: 120 }}
-      defaultValue="----"
+      defaultValue={() => {
+        setSympD(sympOptions[0].label)
+        return sympOptions[0].label
+        }}
       onChange={(v, o) => setSympD(v)}
       options={sympOptions}
       />
       <button onClick={()=> {
         findDeleteUpdate()
-        setIsAdd("no")
+        setIsAdd("yes")
         }}>Delete</button>
       </Flex>}
     </Flex>
