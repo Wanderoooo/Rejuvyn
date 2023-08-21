@@ -43,7 +43,7 @@ React.useEffect(() => {
   }
 
   return (
-    <Flex direction="column" align="center" justify="center">
+    <Flex justify="center" wrap="wrap" gap="9">
       <CheckIn />
       {symp.content.length === 0 || isAdd === "yes" ?
       

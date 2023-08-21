@@ -16,7 +16,7 @@ export default function ProgressBar() {
       <h1 className={style.title}>Health Summary - This Week</h1>
 
       <section>
-      <HeartFilledIcon /> <p>Fitness</p>
+      <HeartFilledIcon /> <p className={style.bartitle}>Fitness</p>
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
@@ -25,7 +25,7 @@ export default function ProgressBar() {
     </Progress.Root>
     </section>
     <section>
-    <TimerIcon /> <p>Next medicine intake</p>
+    <TimerIcon /> <p className={style.bartitle}>Next medicine intake</p>
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
@@ -34,7 +34,7 @@ export default function ProgressBar() {
     </Progress.Root>
     </section>
     <section>
-    <BellIcon /> <p>Next appointment</p>
+    <BellIcon /> <p className={style.bartitle}>Next appointment</p>
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
@@ -43,7 +43,7 @@ export default function ProgressBar() {
     </Progress.Root>
     </section>
       <section>
-    <BookmarkFilledIcon /> <p>Longest symptom duration</p>
+    <BookmarkFilledIcon /> <p className={style.bartitle}>Longest symptom duration</p>
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}
@@ -52,7 +52,7 @@ export default function ProgressBar() {
     </Progress.Root>
     </section>
     <section>
-    <Pencil2Icon /> <p>Consistent tracking</p>
+    <Pencil2Icon /> <p className={style.bartitle}>Consistent tracking</p>
     <Progress.Root className={style.ProgressRoot} value={progress}>
       <Progress.Indicator
         className={style.ProgressIndicator}

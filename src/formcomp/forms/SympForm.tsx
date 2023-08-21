@@ -67,10 +67,10 @@ function SympForm(props: any) {
     <h1>New Symptom</h1>
     <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" className={style.form}>
       <Form.Item name="label" label="Symptom label" rules={[{ required: true }]}>
-        <Input onChange={e => setSLabel(e.target.value)}/>
+        <Input onChange={e => setSLabel(e.target.value)} className={style.formInput}/>
       </Form.Item>
       <Form.Item name="description" label="Description" rules={[{ required: true }]}>
-        <Input onChange={e => setDes(e.target.value)}/>
+        <Input onChange={e => setDes(e.target.value)} className={style.formInput}/>
       </Form.Item>
       <Form.Item name="started" label="Date started" rules={[{ required: true }]}>
       <DatePicker onChange={(dayjs, dateString) => setDate(dateString.toLocaleString())} />

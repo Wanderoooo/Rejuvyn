@@ -6,9 +6,9 @@ export default function SummaryTable(p: any) {
 
   let tableBody = props.content.map((data:any) => {
     return (<Table.Row key={data.name}>
-      <Table.RowHeaderCell>{data.name}</Table.RowHeaderCell>
-      <Table.Cell>{data.week}</Table.Cell>
-      <Table.Cell>{data.total}</Table.Cell>
+      <Table.RowHeaderCell className={style.text}>{data.name}</Table.RowHeaderCell>
+      <Table.Cell className={style.text}>{data.week}</Table.Cell>
+      <Table.Cell className={style.text}>{data.total}</Table.Cell>
     </Table.Row>)
   })
 
@@ -16,9 +16,9 @@ export default function SummaryTable(p: any) {
   <Table.Root className={style.table}>
   <Table.Header>
     <Table.Row>
-      <Table.ColumnHeaderCell>{props.l_1}</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>{props.l_2}</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>{props.l_3}</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell className={style.text}>{props.l_1}</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell className={style.text}>{props.l_2}</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell className={style.text}>{props.l_3}</Table.ColumnHeaderCell>
     </Table.Row>
   </Table.Header>
 

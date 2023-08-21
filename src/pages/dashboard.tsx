@@ -38,20 +38,20 @@ useEffect(() => {
     <Grid columns="2" rows="3" justify="center" align="baseline" className={styles.dashboard}>
       <Welcome name={name}/>
       <ProgressBar />
-      <section>
-      <h1>Medicine</h1>
+      <section className={styles.container}>
+      <h1 className={styles.subtitles}>Medicine</h1>
       <SummaryTable item={med}/>
       </section>
-      <section>
-      <h1>Diet</h1>
+      <section className={styles.container}>
+      <h1 className={styles.subtitles}>Diet</h1>
       <SummaryTable item={diet}/>
       </section>
-      <section>
-      <h1>Weekly physical activity</h1> 
+      <section className={styles.container}>
+      <h1 className={styles.subtitles}>Weekly physical activity</h1> 
       <SummaryTable item={fit}/>
       </section>
-      <section>
-      <h1>Tracked Symptoms</h1> 
+      <section className={styles.container}>
+      <h1 >Tracked Symptoms</h1> 
       <SummaryTable item={symp}/>
       </section>
     </Grid>
