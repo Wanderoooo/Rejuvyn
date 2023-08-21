@@ -1,31 +1,39 @@
 'use client'
 import style from '@/styles/sign.module.css'
 import React from "react";
-import signIn from "@/firebase/auth/signin"
 import { useRouter } from 'next/navigation'
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
 import { Flex } from '@radix-ui/themes';
 import styles from '../styles/index.module.css'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
 function SignIn() {
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [errMessage, setErrMessage] = React.useState('')
   const router = useRouter()
 
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
-      const { result, error } = await signIn(email, password);
+      const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+    setErrMessage('')
+    router.push("./dashboard")
+  })
+  .catch((error) => {
+    console.log(error.code)
+    if (error.code == "auth/user-not-found") {
+      setErrMessage("Email is not linked to an accout")
+    } else if (error.code === "auth/wrong-password") {
+      setErrMessage("Incorrect password, try again")
+    }
+    
+  });
 
-      if (error) {
-          return console.log(error)
-      }
-
-      // else successful
-      console.log(result)
-      return router.push("/dashboard")
     }
 
     return (
@@ -38,7 +46,8 @@ function SignIn() {
       </Tabs.Trigger>
     </Tabs.List>
     <Tabs.Content className={style.TabsContent} value="tab1">
-      <p className={style.Text}>Sign in to your account to see health progress, track your dailies, and view your upcoming appointments</p>
+      <p className={style.Text}>Log in to your account to see health progress, track your dailies, and view your upcoming appointments</p>
+      <br></br><p>{errMessage}</p>
       <form onSubmit={handleForm}>
       <fieldset className={style.Fieldset}>
         <label className={style.Label} htmlFor="email">

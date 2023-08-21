@@ -7,24 +7,31 @@ import { Tabs } from "@radix-ui/themes";
 import Link from "next/link";
 import { Flex } from "@radix-ui/themes";
 import styles from '../styles/index.module.css'
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 export default function SignUp() {
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [errMessage, setErrMessage] = React.useState('')
   const router = useRouter()
 
   const handleForm  = async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
+    event.preventDefault()
 
-      const { result, error } = await signUp(email, password);
-
-      if (error) {
-          return console.log(error)
-      }
-
-      console.log(result)
-      return router.push("/setup")
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      setErrMessage('')
+      return router.push("./setup")
+  })
+  .catch((error) => {
+    if (error.code === "auth/email-already-in-use") {
+      setErrMessage("Email already in use, log in instead")
+    }
+    // ..
+  });
+      
   }
 
   return (
@@ -38,6 +45,7 @@ export default function SignUp() {
       </Tabs.List>
       <Tabs.Content className={style.TabsContent} value="tab1">
         <p className={style.Text}>Sign up to track your health progress, check-in daily, and receive health appointment reminders</p>
+        <br></br><p>{errMessage}</p>
         <form onSubmit={handleForm}>
         <fieldset className={style.Fieldset}>
           <label className={style.Label} htmlFor="emailsu">

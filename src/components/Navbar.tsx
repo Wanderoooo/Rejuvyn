@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
         <NavigationMenu.Root className={style.NavigationMenuRoot}>
           <NavigationMenu.List className={style.NavigationMenuList}>
-          <NavigationMenu.Item>
+          <NavigationMenu.Item className={style.itemResize}>
               <Link className={style.NavigationMenuLink} href='/'>
               <Image
                   src="/logo.png"
@@ -36,12 +36,12 @@ export default function Navbar() {
                />
               </Link>
             </NavigationMenu.Item>
-          <NavigationMenu.Item>
+          <NavigationMenu.Item className={style.itemResize}>
               <Link className={style.NavigationMenuLink} href={user ? './dashboard' : './login'}>
                 Dashboard
               </Link>
             </NavigationMenu.Item>
-          <NavigationMenu.Item>
+          <NavigationMenu.Item className={style.itemResize}>
               <Link className={style.NavigationMenuLink} href={user ? './dailyhealth' : './login'}>
                 Daily Health Check
               </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 Profile
               </Link>
             </NavigationMenu.Item>
-            <NavigationMenu.Item>
+            <NavigationMenu.Item className={style.itemResize}>
               {user ? 
             <button className={`${style.NavigationMenuLink} ${style.logout}`} onClick={handleLogout}>
                 Log Out

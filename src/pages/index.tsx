@@ -12,12 +12,6 @@ import DemoCarousel from '@/components/Carousel'
 export default function Home() {
 
   const router = useRouter()
-  const medicine = {
-    id: 1,
-    name: "synthroid-100mg",
-    instruction: "instruction",
-    next_dose: 24
-  }
 
   return (
     <Flex className={style.page}>
