@@ -19,18 +19,15 @@ export default function SignUp() {
   const handleForm  = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    const {result, error} = await signUp(email, password)
+    if(result) {
       setErrMessage('')
       return router.push("./setup")
-  })
-  .catch((error) => {
-    if (error.code === "auth/email-already-in-use") {
+  } else if(error) {
+    if (error.code == "auth/email-already-in-use") {
       setErrMessage("Email already in use, log in instead")
     }
-    // ..
-  });
+  }
       
   }
 

@@ -6,8 +6,9 @@ const auth = getAuth();
 
 
 export default async function signUp(email: string, password: string) {
-    let result = null,
-        error = null;
+    let result : any = null
+    let error : any = null
+
     try {
         result = await createUserWithEmailAndPassword(auth, email, password).then(async cred => {
             return await setDoc(doc(db, "users", cred.user.uid), {
@@ -109,8 +110,4 @@ export default async function signUp(email: string, password: string) {
     }
 
     return { result, error };
-}
-
-async function createUser(auth :any, email : string, password : string) {
-   let result = await createUserWithEmailAndPassword(auth, email, password);
 }

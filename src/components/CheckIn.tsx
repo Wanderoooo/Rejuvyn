@@ -8,8 +8,9 @@ import DietTrack from '@/formcomp/DietTrack';
 import { getAuth } from 'firebase/auth';
 import { Flex } from '@radix-ui/themes';
 import { Button } from 'antd';
-import { arrayUnion, doc, increment, updateDoc } from 'firebase/firestore';
+import { arrayUnion, increment, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/config';
+import { doc, getDoc } from "firebase/firestore";
 
 export default function CheckIn() {
 
@@ -20,7 +21,6 @@ export default function CheckIn() {
   const auth = getAuth();
   const user = auth.currentUser
 
-
   async function handleSubmit() {
 
         const date = new Date()
@@ -30,16 +30,37 @@ export default function CheckIn() {
           fitRec: fitRecord,
           dietRec: dietRecord
         }
-        console.log(newRec)
+        
         if (user) {
           const userRef = doc(db, "users", user.uid)
+          const userSnap = await getDoc(userRef);
+          const oldFitContent = userSnap.data()?.fit.content
+          let newFitContent
+
+          if(userSnap.data()?.cons % 8 == 0) {
+            newFitContent = oldFitContent.map((exercise : any, index: number) => {
+              return {
+                ...exercise,
+                week: fitRecord[Object.keys(fitRecord)[index]],
+                total: fitRecord[Object.keys(fitRecord)[index]] + exercise.total,
+              }
+            })} else {
+              newFitContent = oldFitContent.map((exercise : any, index: number) => {
+                return {
+                  ...exercise,
+                  week: fitRecord[Object.keys(fitRecord)[index]] + exercise.week,
+                  total: fitRecord[Object.keys(fitRecord)[index]] + exercise.total,
+                }})}
+            
+
           await updateDoc(userRef, {
             record: arrayUnion(newRec),
-            cons: increment(1)
-          }
-            );
-          }
-  }
+            cons: increment(1),
+            "fit.content": newFitContent
+          });
+        }
+      }
+  
 
 
   return (

@@ -20,7 +20,7 @@ export default function DietTrack(props:any) {
     <Flex direction="column" align="end">
       <Flex>
         <label>Vitamins  </label>
-        <Input type="number" min="0" onChange={(e) => {
+        <Input type="number" min="0" placeholder="0" onChange={(e) => {
           setVit(parseInt(e.target.value))
           save(parseInt(e.target.value) || 0, carbo, pro, fib)}}/>
       <label>g</label>
@@ -28,7 +28,7 @@ export default function DietTrack(props:any) {
 
       <Flex>
         <label>Carbohydrate  </label>
-        <Input type="number" min="0" onChange={(e) => {
+        <Input type="number" min="0" placeholder="0" onChange={(e) => {
           setCarbo(parseInt(e.target.value))
           save(vit, parseInt(e.target.value) || 0, pro, fib)}} />
       <label>g</label>
@@ -36,7 +36,7 @@ export default function DietTrack(props:any) {
 
       <Flex>
         <label>Protein  </label>
-        <Input type="number" min="0" onChange={(e) => { 
+        <Input type="number" min="0" placeholder="0" onChange={(e) => { 
           setPro(parseInt(e.target.value))
           save(vit, carbo, parseInt(e.target.value) || 0, fib)}} />
       <label>g</label>
@@ -44,7 +44,7 @@ export default function DietTrack(props:any) {
 
       <Flex>
         <label>Fiber  </label>
-        <Input type="number" min="0" onChange={(e) => { 
+        <Input type="number" min="0" placeholder="0" onChange={(e) => { 
           setFib(parseInt(e.target.value))
           save(vit, carbo, pro, parseInt(e.target.value) || 0)}} />
       <label>g</label>
