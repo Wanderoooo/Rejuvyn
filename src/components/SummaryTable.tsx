@@ -14,8 +14,8 @@ export default function SummaryTable(p: any) {
 
  return (
   <Table.Root className={style.table}>
-  <Table.Header>
-    <Table.Row>
+  <Table.Header className={style.header}>
+    <Table.Row className={style.row}>
       <Table.ColumnHeaderCell className={style.text}>{props.l_1}</Table.ColumnHeaderCell>
       <Table.ColumnHeaderCell className={style.text}>{props.l_2}</Table.ColumnHeaderCell>
       <Table.ColumnHeaderCell className={style.text}>{props.l_3}</Table.ColumnHeaderCell>

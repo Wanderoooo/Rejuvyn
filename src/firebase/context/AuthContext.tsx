@@ -38,7 +38,7 @@ export const AuthContextProvider = ({
 
     return (
         <AuthContext.Provider value={{ user }}>
-            {loading ? <div>Hang tight...</div> : children}
+            {!loading && children}
         </AuthContext.Provider>
     );
 };

@@ -37,8 +37,8 @@ export default function Record() {
     return (<Table.Row key={index}>
       <Table.RowHeaderCell>{data.date}</Table.RowHeaderCell>
       <Table.Cell>{data.medRec.length === 0 ? "You have no prescription" : getAllMedInfo(data.medRec, index)}</Table.Cell>
-      <Table.Cell>{`Back: ${data.fitRec.back} \n Abs: ${data.fitRec.abs} \n Legs: ${data.fitRec.legs} \n Arms: ${data.fitRec.arms}`}</Table.Cell>
-      <Table.Cell>{`Vitamin: ${data.dietRec.vitaming} \n Carbs: ${data.dietRec.carbog} \n Protein: ${data.dietRec.prog} \n Fiber: ${data.dietRec.fibg}`}</Table.Cell>
+      <Table.Cell>{`Back: ${data.fitRec.back}h \n Abs: ${data.fitRec.abs}h \n Legs: ${data.fitRec.legs}h \n Arms: ${data.fitRec.arms}h`}</Table.Cell>
+      <Table.Cell>{`Vitamin: ${data.dietRec.vitaming}g \n Carbs: ${data.dietRec.carbog}g \n Protein: ${data.dietRec.prog}g \n Fiber: ${data.dietRec.fibg}g`}</Table.Cell>
     </Table.Row>)
   })
 

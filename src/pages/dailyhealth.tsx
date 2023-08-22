@@ -63,10 +63,14 @@ React.useEffect(() => {
       onChange={(v, o) => setSympD(v)}
       options={sympOptions}
       />
-      <button onClick={()=> {
+      <Button onClick={()=> {
         findDeleteUpdate()
         setIsAdd("yes")
-        }}>Delete</button>
+        }}>Delete</Button>
+
+        <Button onClick={()=> {
+        setIsAdd("yes")
+        }}>Cancel</Button>
       </Flex>}
     </Flex>
   )

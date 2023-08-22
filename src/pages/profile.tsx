@@ -14,8 +14,14 @@ const DynamicPS = dynamic(() => import('../formcomp/forms/ProfileShow'), {
 })
 
 export default function Profile() {
+  interface Docs {
+    l_1: string,
+    l_2: string,
+    l_3: string,
+    content: any[]
+  }
   const [isAdd, setIsAdd] = useState("pro")
-  const [docs, setDocs] = useState({l_1: "", l_2: "", l_3: "", content: [{name:"", week: "", total: ""}]})
+  const [docs, setDocs] = useState<Docs>({l_1: "", l_2: "", l_3: "", content: []})
   const [docName, setDocName] = useState("")
 
 
@@ -50,9 +56,9 @@ useEffect(() => {
 
   return (
     <Flex direction="column" justify="center" align="center">
-      {isAdd === "pro" ? 
-      <Flex direction="column" justify="center" align="center">
       <DynamicPS />
+      {isAdd === "pro" &&  docs.content.length ? 
+      <Flex direction="column" justify="center" align="center">
       <section>
       <h1>Your Doctors</h1>
       <SummaryTable item={docs}/>
@@ -62,20 +68,22 @@ useEffect(() => {
       <Button type='default'>Edit Profile Info</Button>
       </Flex>
       :
-      isAdd === "addDoc" ? 
+      isAdd === "addDoc" || docs.content.length === 0 ? 
       <DoctorsForm handleDisplay={setIsAdd} isZero={docs.content.length === 0}/>
       :
       <Flex direction="column" align="center">
         <h2>Select doctor to be deleted</h2>
          <Select
       style={{ width: 120 }}
-      defaultValue={docOptions[0]?.label}
+      defaultValue={() => {
+        setDocName(docOptions[0]?.label)
+        return docOptions[0]?.label}}
       onChange={(v, o) => setDocName(v)}
       options={docOptions}
       />
       <Button onClick={()=> {
-        setIsAdd("no")
         findDeleteUpdate(docName)
+        setIsAdd("pro")
         }}>Delete</Button>
       </Flex>
 

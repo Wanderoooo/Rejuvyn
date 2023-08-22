@@ -5,7 +5,6 @@ import { DatePicker } from 'antd';
 import { Flex, TextArea } from '@radix-ui/themes';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import style from './ProfileForm.module.css'
-import { useRouter } from 'next/router';
 import { getAuth } from 'firebase/auth';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/config';
@@ -82,8 +81,9 @@ function DoctorsForm(props: any) {
         <SubmitButton form={form} />
         </section>
           <Button htmlType="reset">Reset</Button>
-            {!props.isZero &&
-            <Button onClick={() => props.handleDisplay("pro")}>Cancel</Button>}
+            {!props.isZero && <Button onClick={(e) => {
+              e.preventDefault()
+              props.handleDisplay("pro")}}>Cancel</Button>}
         </Space>
       </Form.Item>
     </Form>

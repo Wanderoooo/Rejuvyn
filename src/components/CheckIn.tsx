@@ -25,7 +25,7 @@ export default function CheckIn() {
 
         const date = new Date()
         const newRec = {
-          date: `${date.getHours()}h ${date.getMinutes()}min ${date.getDate()} of month ${date.getMonth()}, ${date.getFullYear()}`,
+          date: `${date.getHours()}h ${date.getMinutes()}min, ${date.getDate()} of month ${date.getMonth()}, ${date.getFullYear()}`,
           medRec: medRecord,
           fitRec: fitRecord,
           dietRec: dietRecord

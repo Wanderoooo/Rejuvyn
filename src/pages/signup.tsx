@@ -14,12 +14,14 @@ export default function SignUp() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [errMessage, setErrMessage] = React.useState('')
+  const [confPassword, setConfPassword] = React.useState('')
   const router = useRouter()
 
   const handleForm  = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const {result, error} = await signUp(email, password)
 
+    if(password === confPassword) {
+    const {result, error} = await signUp(email, password)
     if(result) {
       setErrMessage('')
       
@@ -27,10 +29,15 @@ export default function SignUp() {
   } else if(error) {
     if (error.code == "auth/email-already-in-use") {
       setErrMessage("Email already in use, log in instead")
+    } else if (error.code == "auth/weak-password") {
+      setErrMessage('Password needs to be at least 6 characters')
+
     }
-  }
-      
-  }
+  }  
+}   else {
+  setErrMessage('Passwords do not match')
+}
+}
 
   return (
     <Flex className={styles.page}>
@@ -42,7 +49,7 @@ export default function SignUp() {
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content className={style.TabsContent} value="tab1">
-        <p className={style.Text}>Sign up to track your health progress, check-in daily, and receive health appointment reminders</p>
+        <p className={style.Text}>Sign up to track your health progress, check-in daily, and have a comprehensive health record ready-to-go</p>
         <br></br><p>{errMessage}</p>
         <form onSubmit={handleForm}>
         <fieldset className={style.Fieldset}>
@@ -56,6 +63,12 @@ export default function SignUp() {
             Password
           </label>
           <input className={style.Input} id="setPassword" type="password" required onChange={(e) => setPassword(e.target.value)}/>
+        </fieldset>
+        <fieldset className={style.Fieldset}>
+          <label className={style.Label} htmlFor="confPassword">
+            Confirm password
+          </label>
+          <input className={style.Input} id="confPassword" type="password" required onChange={(e) => setConfPassword(e.target.value)}/>
         </fieldset>
         <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-evenly' }}>
           <button className={`${style.Buttongreen} ${style.Button}`} type='submit'>Sign Up</button>

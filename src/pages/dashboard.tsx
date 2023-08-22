@@ -51,7 +51,7 @@ useEffect(() => {
       <SummaryTable item={fit}/>
       </section>
       <section className={styles.container}>
-      <h1 >Tracked Symptoms</h1> 
+      <h1 className={styles.subtitles}>Tracked Symptoms</h1> 
       <SummaryTable item={symp}/>
       </section>
     </Grid>

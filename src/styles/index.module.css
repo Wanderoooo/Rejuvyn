@@ -29,7 +29,7 @@
 
 
 .dashboard {
-  column-gap: 20px;
+  column-gap: 0.5cqw;
 
 } 
 
@@ -39,5 +39,9 @@
 }
 
 .container {
-  padding: 2rem;
+  padding: 1cqw;
+}
+
+.row {
+  height: 10cqw;
 }

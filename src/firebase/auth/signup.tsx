@@ -111,6 +111,5 @@ export default async function signUp(email: string, password: string) {
         error = e;
     }
 
-    console.log(result)
     return { result, error };
 }
