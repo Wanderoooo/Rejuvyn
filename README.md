@@ -2,6 +2,8 @@
 # Rejuvyn
 Rejuvyn is a user-centered web-app for people with chronic/autoimmune disease. Initially created specifically for my parents ❤️
 
+![image](https://github.com/Wanderoooo/Rejuvyn/assets/137996848/f5c081c0-3942-4b74-8d07-0638aeae1d11)
+
 ## Features
 0. Landing page:
 Features authentication capability (sensitive health data needs to be safely stored), terms of service, feedback form.
