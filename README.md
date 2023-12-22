@@ -19,8 +19,7 @@ Heat map/calendar for dosage taking consistency dosage instruction, pharmacist/d
 
 4. Appointment Management:
    Include a calendar or appointment tracking system for managing doctor visits, tests, and therapy sessions. Send reminders for upcoming appointments.
-
-Reminder to bring requisition form, tracking when results come out/notifications, link to BC’s health portal, hospital contact, search walk-in clinic (might need to call api)
+   Reminder to bring requisition form, tracking when results come out/notifications, link to BC’s health portal, hospital contact, search walk-in clinic (might need to call api)
 
 
 ## Getting Started
